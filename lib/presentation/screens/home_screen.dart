@@ -254,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildCategoryFilters(BuildContext context, StoryProvider provider) {
-    final categories = ["All", "Horror", "Romance", "Music", "Spiritual", "Kids", "Mythology"];
+    final categories = ["All", "Horror", "Romance", "Music", "Spiritual", "Kids", "Mythology", "True Crime"];
     return SliverToBoxAdapter(
       child: Container(
         height: 38,
