@@ -4,6 +4,7 @@ class Episode {
   final String description;
   final String audioUrl;
   final String duration;
+  final String sourceType;
 
   Episode({
     required this.id,
@@ -11,6 +12,7 @@ class Episode {
     required this.description,
     required this.audioUrl,
     required this.duration,
+    this.sourceType = "direct",
   });
 
   factory Episode.fromJson(Map<String, dynamic> json) {
@@ -20,6 +22,7 @@ class Episode {
       description: json['description'] ?? "",
       audioUrl: json['audioUrl'] ?? "",
       duration: json['duration'] ?? "",
+      sourceType: json['sourceType'] ?? "direct",
     );
   }
 
@@ -30,6 +33,7 @@ class Episode {
       'description': description,
       'audioUrl': audioUrl,
       'duration': duration,
+      'sourceType': sourceType,
     };
   }
 }

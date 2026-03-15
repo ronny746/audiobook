@@ -45,14 +45,13 @@ class PlayerScreen extends StatelessWidget {
             bottom: false,
             child: Column(
               children: [
-                // 1. Cover Image Section - Scaled down for smaller screens
+                // ... Cover Image, Info, Player widgets ...
                 Expanded(
                   flex: 10,
                   child: Center(
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        // Rotating Mandala Glow
                         Container(
                           width: screenHeight * 0.35,
                           height: screenHeight * 0.35,
@@ -94,7 +93,6 @@ class PlayerScreen extends StatelessWidget {
                   ),
                 ),
                 
-                // 2. Info Section (Title & Author)
                 Expanded(
                   flex: 4,
                   child: Padding(
@@ -111,10 +109,8 @@ class PlayerScreen extends StatelessWidget {
                             fontSize: 22,
                             height: 1.1,
                           ),
-                        ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.1, end: 0),
-                        
+                        ),
                         const SizedBox(height: 8),
-                        
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -144,18 +140,16 @@ class PlayerScreen extends StatelessWidget {
                               ),
                             ),
                           ],
-                        ).animate().fadeIn(delay: 400.ms),
+                        ),
                       ],
                     ),
                   ),
                 ),
 
-                // 3. Audio Player Section
                 Expanded(
                   flex: 11,
                   child: Column(
                     children: [
-                      // Description - Compact
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Text(
@@ -170,15 +164,12 @@ class PlayerScreen extends StatelessWidget {
                             color: AppColors.textSecondary,
                           ),
                         ),
-                      ).animate().fadeIn(delay: 500.ms),
-                      
+                      ),
                       const Spacer(),
-                      
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: AudioPlayerWidget(audioUrl: episode.audioUrl),
-                      ).animate().fadeIn(delay: 600.ms).slideY(begin: 0.1, end: 0),
-                      
+                      ),
                       const SizedBox(height: 20),
                     ],
                   ),
@@ -186,6 +177,35 @@ class PlayerScreen extends StatelessWidget {
               ],
             ),
           ),
+
+          // Loading Overlay
+          if (audioProvider.isExtracting)
+            Container(
+              color: Colors.black.withOpacity(0.5),
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const CircularProgressIndicator(color: AppColors.saffron),
+                      const SizedBox(height: 16),
+                      Text(
+                        "Extracting Audio...",
+                        style: TextStyle(
+                          color: AppColors.deepMaroon,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );

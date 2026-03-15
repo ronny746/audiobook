@@ -71,13 +71,23 @@ class MiniPlayer extends StatelessWidget {
               ),
             ),
             // Controls
-            IconButton(
-              icon: Icon(
-                audioProvider.isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
-                color: AppColors.deepMaroon,
+            if (audioProvider.isExtracting)
+              const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.saffron),
+                ),
+              )
+            else
+              IconButton(
+                icon: Icon(
+                  audioProvider.isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                  color: AppColors.deepMaroon,
+                ),
+                onPressed: () => audioProvider.togglePlay(),
               ),
-              onPressed: () => audioProvider.togglePlay(),
-            ),
             IconButton(
               icon: const Icon(Icons.close_rounded, color: Colors.grey, size: 20),
               onPressed: () => audioProvider.stop(),

@@ -3,16 +3,20 @@ import 'package:just_audio/just_audio.dart';
 import 'package:audio_service/audio_service.dart';
 import '../../core/audio/audio_handler.dart';
 import '../../data/models/story.dart';
+import '../../data/services/youtube_service.dart';
 
 class AudioPlayerProvider with ChangeNotifier {
   final MyAudioHandler _audioHandler;
+  final YoutubeService _youtubeService = YoutubeService();
   Podcast? _currentPodcast;
   Episode? _currentEpisode;
+  bool _isExtracting = false;
   
   AudioPlayer get player => _audioHandler.player;
   Podcast? get currentPodcast => _currentPodcast;
   Episode? get currentEpisode => _currentEpisode;
   bool get isPlaying => player.playing;
+  bool get isExtracting => _isExtracting;
   
   AudioPlayerProvider(this._audioHandler) {
     _init();
@@ -29,13 +33,28 @@ class AudioPlayerProvider with ChangeNotifier {
   }
 
   Future<void> playEpisode(Podcast podcast, Episode episode) async {
-    if (_currentEpisode?.id == episode.id) return;
+    if (_currentEpisode?.id == episode.id && player.playing) return;
     
     _currentPodcast = podcast;
     _currentEpisode = episode;
+    _isExtracting = true;
     notifyListeners();
     
     try {
+      String audioUrl = episode.audioUrl;
+
+      // 1. If it's a YouTube source, extract/cache the real URL
+      if (episode.sourceType == "youtube") {
+        debugPrint("Extracting YouTube audio for: ${episode.title}");
+        final String? extractedUrl = await _youtubeService.getAudioUrl(episode.audioUrl);
+        
+        if (extractedUrl != null) {
+          audioUrl = extractedUrl;
+        } else {
+          throw Exception("Could not extract audio from YouTube URL");
+        }
+      }
+
       final mediaItem = MediaItem(
         id: episode.id,
         album: podcast.title,
@@ -48,7 +67,7 @@ class AudioPlayerProvider with ChangeNotifier {
 
       await player.setAudioSource(
         AudioSource.uri(
-          Uri.parse(episode.audioUrl),
+          Uri.parse(audioUrl),
           tag: mediaItem,
         ),
       );
@@ -56,6 +75,9 @@ class AudioPlayerProvider with ChangeNotifier {
       player.play();
     } catch (e) {
       debugPrint("Error playing episode: $e");
+    } finally {
+      _isExtracting = false;
+      notifyListeners();
     }
   }
 
