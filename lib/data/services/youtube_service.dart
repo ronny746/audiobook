@@ -53,6 +53,7 @@ class YoutubeService {
           s.audioCodec.toLowerCase().contains('mp4')
         );
         
+        
         if (m4aStreams.isNotEmpty) {
           streamInfo = m4aStreams.withHighestBitrate();
         } else {
