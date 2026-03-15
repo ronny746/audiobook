@@ -1,61 +1,7 @@
 [
+  
   {
     "id": "1",
-    "title": "The Legend of Ramayana",
-    "author": "Maharishi Valmiki",
-    "description": "Experience the timeless epic of Lord Rama, his journey of righteousness (Dharma), the exile, and the ultimate victory of good over evil. This series brings the ancient sanskrit epic to life with vivid storytelling and immersive soundscapes.",
-    "imageUrl": "https://images.unsplash.com/photo-1582201942988-13e60e4556ee?q=80&w=1000&auto=format&fit=crop",
-    "category": "Mythology",
-    "episodes": [
-      {
-        "id": "r1",
-        "title": "Bala Kanda: The Divine Birth",
-        "description": "The story of King Dasharatha's quest for an heir and the divine birth of Rama and his brothers.",
-        "audioUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/02/Sample-OGG-File.ogg",
-        "duration": "24:15"
-      },
-      {
-        "id": "r2",
-        "title": "Ayodhya Kanda: The Exile Begins",
-        "description": "Queen Kaikeyi's boons lead to Rama's 14-year exile to the Dandaka forest.",
-        "audioUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/02/Sample-OGG-File.ogg",
-        "duration": "28:30"
-      },
-      {
-        "id": "r3",
-        "title": "Aranya Kanda: Life in the Forest",
-        "description": "Rama, Sita, and Lakshmana's peaceful life in the forest is interrupted by the demoness Surpanakha.",
-        "audioUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/02/Sample-OGG-File.ogg",
-        "duration": "22:10"
-      }
-    ]
-  },
-  {
-    "id": "2",
-    "title": "Birbal's Wit & Wisdom",
-    "author": "Folk Tales",
-    "description": "Delightful and clever tales from the court of Emperor Akbar, featuring his most trusted and intelligent advisor, Birbal. Each story is a lesson in quick thinking and common sense.",
-    "imageUrl": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1000&auto=format&fit=crop",
-    "category": "Folk Tales",
-    "episodes": [
-      {
-        "id": "b1",
-        "title": "The Crow Count in Agra",
-        "description": "Akbar challenges Birbal to count all the crows in the city of Agra.",
-        "audioUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/02/Sample-OGG-File.ogg",
-        "duration": "08:45"
-      },
-      {
-        "id": "b2",
-        "title": "The Honest Thief",
-        "description": "Birbal uses a clever psychological trick to find the thief among Akbar's courtiers.",
-        "audioUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/02/Sample-OGG-File.ogg",
-        "duration": "10:20"
-      }
-    ]
-  },
-  {
-    "id": "3",
     "title": "Indian Ghost Stories",
     "author": "Ruskin Bond",
     "description": "Spooky and atmospheric tales from the hills and plains of India, where old mansions, dark forests, and ancient spirits reside. Narrated with a haunting charm.",
@@ -79,31 +25,7 @@
     ]
   },
   {
-    "id": "4",
-    "title": "The Panchatantra Collection",
-    "author": "Vishnu Sharma",
-    "description": "Ancient animal fables from India that teach valuable life lessons about friendship, strategy, and wisdom. Perfect for young and old listeners alike.",
-    "imageUrl": "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1000&auto=format&fit=crop",
-    "category": "Kids",
-    "episodes": [
-      {
-        "id": "p1",
-        "title": "The Lion and the Clever Rabbit",
-        "description": "How a small rabbit defeated a mighty lion through pure intelligence.",
-        "audioUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/02/Sample-OGG-File.ogg",
-        "duration": "06:30"
-      },
-      {
-        "id": "p2",
-        "title": "The Talkative Tortoise",
-        "description": "A lesson in why silence is sometimes the greatest virtue.",
-        "audioUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/02/Sample-OGG-File.ogg",
-        "duration": "07:15"
-      }
-    ]
-  },
-  {
-    "id": "5",
+    "id": "2",
     "title": "Hidden History of India",
     "author": "Dr. Aniruddha",
     "description": "Uncover the forgotten heroes, scientific discoveries, and cultural revolutions that shaped the Indian subcontinent. A deep dive into the roots of our civilization.",
