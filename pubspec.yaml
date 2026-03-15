@@ -1,0 +1,41 @@
+name: audiobook_app
+description: "Shravan - A warm Indian-themed audiobook and story listening app"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  provider: ^6.1.2
+  http: ^1.2.1
+  just_audio: ^0.9.42
+  audio_service: ^0.18.15
+  audio_session: ^0.1.21
+  cached_network_image: ^3.3.1
+  smooth_page_indicator: ^1.1.0
+  flutter_animate: ^4.5.0
+  lottie: ^3.1.2
+  percent_indicator: ^4.2.3
+  shared_preferences: ^2.2.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/data/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo.png"
+  min_sdk_android: 21
