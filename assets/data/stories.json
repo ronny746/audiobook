@@ -39,7 +39,7 @@
     "id": "2",
     "title": "Insta Love",
     "author": "RosePod",
-    "description": "Rishi aur Nikita ki love story — breakup ke baad dono ek hi influencer company mein aa jaate hain.",
+    "description": "Rishi aur Nikita ki love story — breakup ke baad dono ek hi influencer company mein aa jaate hain. Kya intequam hoga ya phir pyaar?",
     "imageUrl": "https://ik.imagekit.io/vurtux/tr:n-app_thumbnail_large/https://files.hubhopper.com/podcast/434449/insta-love_4818.png?v=1719997508255253864&s=myuse",
     "category": "Romance",
     "playType": "detail",
@@ -50,13 +50,105 @@
       {
         "id": "il1",
         "title": "Ep 1 – Love at First Sight",
-        "description": "Rishi aur Nikita ki pehli mulaqaat.",
+        "description": "Rishi aur Nikita ki pehli mulaqaat — Nikita ne challenge kiya, Rishi ne accept.",
         "audioUrl": "https://play.hubhopper.com/7cb078f1ecf63e09680b15b40bab020d.mp3?s=myuse",
         "downloadUrl": "https://download.hubhopper.com/7cb078f1ecf63e09680b15b40bab020d.mp3?s=myuse",
         "sourceType": "mp3",
         "playType": "direct",
         "duration": "12:16",
         "plays": "6K"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Ramayana – HT Smartcast",
+    "author": "Nitish Bharadwaj",
+    "description": "Shri Ram ki sampurna katha narrated by Nitish Bharadwaj. Dharma, prem aur tyaag ki anokhi gaatha.",
+    "imageUrl": "https://images.unsplash.com/photo-1582201942988-13e60e4556ee?q=80&w=1000&auto=format&fit=crop",
+    "category": "Mythology",
+    "playType": "detail",
+    "actionLabel": "Explore Ramayan",
+    "sourceType": "mp3",
+    "totalEpisodes": 62,
+    "episodes": [
+      {
+        "id": "ram1",
+        "title": "Baal Kand – Shri Ram Janm",
+        "description": "Raja Dashrath ke ghar charo bhaion ka janm.",
+        "audioUrl": "https://play.hubhopper.com/7ec09e6c8672956c3ce0d3df1621c3e7.mp3?s=myuse",
+        "sourceType": "mp3",
+        "playType": "direct",
+        "duration": "18:45"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "title": "Panchatantra Tales",
+    "author": "Dadi Ma",
+    "description": "Bacchon ke liye moral stories aur neeti kathaon ka sangreh. Chatury aur buddhimani ki kahaniyan.",
+    "imageUrl": "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1000&auto=format&fit=crop",
+    "category": "Kids",
+    "playType": "detail",
+    "actionLabel": "Kahaniyan Suno",
+    "sourceType": "mp3",
+    "totalEpisodes": 25,
+    "episodes": [
+      {
+        "id": "kid1",
+        "title": "Chattur Khargosh",
+        "description": "Buddhimani se kaise sher ko haraya.",
+        "audioUrl": "https://play.hubhopper.com/513483f7cd73f1f4d6f8de995f35ba80.mp3?s=myuse",
+        "sourceType": "mp3",
+        "playType": "direct",
+        "duration": "07:30"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "title": "Lo-Fi Indian Beats",
+    "author": "Chill Nation",
+    "description": "Studying ya relaxation ke liye best Indian instrumentals aur Lo-Fi beats. Shanti aur sukoon ke liye.",
+    "imageUrl": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1000&auto=format&fit=crop",
+    "category": "Music",
+    "playType": "direct",
+    "actionLabel": "Play Now",
+    "sourceType": "mp3",
+    "totalEpisodes": 3,
+    "episodes": [
+      {
+        "id": "mus1",
+        "title": "Midnight Raag – Sitar Lo-Fi",
+        "description": "Calm sitar melody with rainy lofi beats.",
+        "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "sourceType": "mp3",
+        "playType": "direct",
+        "duration": "06:12"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "title": "Divine Mantras",
+    "author": "Spiritual India",
+    "description": "Powerful mantras for daily positive energy and peace. Om Namah Shivaya to Gayatri Mantra.",
+    "imageUrl": "https://images.unsplash.com/photo-1604881991720-f91add269bed?q=80&w=1000&auto=format&fit=crop",
+    "category": "Spiritual",
+    "playType": "direct",
+    "actionLabel": "Stream Mantras",
+    "sourceType": "mp3",
+    "totalEpisodes": 5,
+    "episodes": [
+      {
+        "id": "man1",
+        "title": "Om Chanting",
+        "description": "Deep meditation Om sound for inner peace.",
+        "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+        "sourceType": "mp3",
+        "playType": "direct",
+        "duration": "10:30"
       }
     ]
   },
@@ -75,7 +167,7 @@
       {
         "id": "2764407",
         "title": "The Murder of Graham Staines",
-        "description": "TW : Crimes Against Children, Graphic Violence, Communal Violence. Listen to our episode to find out how it reared its ugly head in Odisha in 1999.",
+        "description": "Listen to our episode to find out how Hindutva reared its ugly head in Odisha in 1999.",
         "audioUrl": "https://play.hubhopper.com/fb948639e77e1a47dd87d941926bea8c.mp3?s=myuse",
         "downloadUrl": "https://download.hubhopper.com/fb948639e77e1a47dd87d941926bea8c.mp3?s=myuse",
         "sourceType": "mp3",
@@ -84,53 +176,9 @@
         "plays": "9.9K"
       },
       {
-        "id": "2764408",
-        "title": "Review : Black Warrant - Confessions of a Tihar Jailer",
-        "description": "In today's Shorty, Sneha talks about Black Warrant : Confessions of a Tihar Jailer, and her fascination with Prisons, True Crime and Death Penalty.",
-        "audioUrl": "https://play.hubhopper.com/203240712a80096d20a884e72856e93b.mp3?s=myuse",
-        "downloadUrl": "https://download.hubhopper.com/203240712a80096d20a884e72856e93b.mp3?s=myuse",
-        "sourceType": "mp3",
-        "playType": "direct",
-        "duration": "19:12",
-        "plays": "4.7K"
-      },
-      {
-        "id": "2764409",
-        "title": "Cyanide Mallika",
-        "description": "A Tale of Gold and Cyanide. All comments about any person/group of persons made in this podcast are personal and are not intended to hurt anyone\u2019s feelings.",
-        "audioUrl": "https://play.hubhopper.com/c74ab01ef17205d92b889ad50afaf085.mp3?s=myuse",
-        "downloadUrl": "https://download.hubhopper.com/c74ab01ef17205d92b889ad50afaf085.mp3?s=myuse",
-        "sourceType": "mp3",
-        "playType": "direct",
-        "duration": "33:58",
-        "plays": "2.4K"
-      },
-      {
-        "id": "2764410",
-        "title": "TRAILER!",
-        "description": "Presenting the trailer for Khooni the Podcast. Music credits: Private Eye by Kevin MacLeod.",
-        "audioUrl": "https://play.hubhopper.com/42ce1f2773c8fcd84c9d005436eb4a8a.mp3?s=myuse",
-        "downloadUrl": "https://download.hubhopper.com/42ce1f2773c8fcd84c9d005436eb4a8a.mp3?s=myuse",
-        "sourceType": "mp3",
-        "playType": "direct",
-        "duration": "00:46",
-        "plays": "9.5K"
-      },
-      {
-        "id": "2764411",
-        "title": "India's Youngest Serial Killer (So Far)",
-        "description": "Amardeep Sada, is just a normal boy living in rural Bihar. So why are his neighbours afraid of him? What secrets does his family harbour?",
-        "audioUrl": "https://play.hubhopper.com/627bfa3f6dbc40de194e829cc4f9f2da.mp3?s=myuse",
-        "downloadUrl": "https://download.hubhopper.com/627bfa3f6dbc40de194e829cc4f9f2da.mp3?s=myuse",
-        "sourceType": "mp3",
-        "playType": "direct",
-        "duration": "13:46",
-        "plays": "5.2K"
-      },
-      {
         "id": "2764412",
         "title": "The Tandoor Murder",
-        "description": "Trigger Warning : Domestic Violence, Spousal Violence. Naina Sahni could have been a fashion designer in Australia. Or a pilot flying all over the world.",
+        "description": "Trigger Warning : Domestic Violence, Spousal Violence. Naina Sahni's horrific story.",
         "audioUrl": "https://play.hubhopper.com/a8f7f2242efc226f61e79625c93bc5e4.mp3?s=myuse",
         "downloadUrl": "https://download.hubhopper.com/a8f7f2242efc226f61e79625c93bc5e4.mp3?s=myuse",
         "sourceType": "mp3",
