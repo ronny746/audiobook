@@ -37,7 +37,10 @@ class _MainScaffoldState extends State<MainScaffold> {
             children: [
               Padding(
                 padding: EdgeInsets.only(bottom: isPlayerActive ? 85 : 0),
-                child: _screens[_selectedIndex],
+                child: IndexedStack(
+                  index: _selectedIndex,
+                  children: _screens,
+                ),
               ),
               if (isPlayerActive)
                 const Positioned(
