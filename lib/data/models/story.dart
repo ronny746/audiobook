@@ -7,6 +7,7 @@ class Episode {
   final String sourceType;
   final String playType;
   final bool downloadable;
+  final String? lyrics;
 
   Episode({
     required this.id,
@@ -17,6 +18,7 @@ class Episode {
     this.sourceType = "direct",
     this.playType = "youtube",
     this.downloadable = false,
+    this.lyrics,
   });
 
   factory Episode.fromJson(Map<String, dynamic> json) {
@@ -29,6 +31,7 @@ class Episode {
       sourceType: json['sourceType'] ?? "direct",
       playType: json['playType'] ?? "youtube",
       downloadable: json['downloadable'] ?? false,
+      lyrics: json['lyrics'],
     );
   }
 
@@ -42,6 +45,7 @@ class Episode {
       'sourceType': sourceType,
       'playType': playType,
       'downloadable': downloadable,
+      'lyrics': lyrics,
     };
   }
 }
