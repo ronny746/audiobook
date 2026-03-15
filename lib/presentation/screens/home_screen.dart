@@ -5,6 +5,7 @@ import '../../core/theme/app_theme.dart';
 import '../providers/story_provider.dart';
 import '../widgets/podcast_card.dart';
 import 'podcast_detail_screen.dart';
+import '../providers/audio_player_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -119,14 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               final podcast = storyProvider.podcasts[index];
                               return PodcastCard(
                                 podcast: podcast,
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => PodcastDetailScreen(podcast: podcast),
-                                    ),
-                                  );
-                                },
+                                onTap: () => _handlePodcastTap(context, podcast),
                               );
                             },
                             childCount: storyProvider.podcasts.length,
@@ -142,10 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildFeaturedCard(BuildContext context, Podcast podcast) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => PodcastDetailScreen(podcast: podcast)),
-      ),
+      onTap: () => _handlePodcastTap(context, podcast),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.8,
         margin: const EdgeInsets.only(right: 16),
@@ -204,5 +195,17 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+  void _handlePodcastTap(BuildContext context, Podcast podcast) {
+    if (podcast.playType == 'detail') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => PodcastDetailScreen(podcast: podcast)),
+      );
+    } else {
+      if (podcast.episodes.isNotEmpty) {
+        context.read<AudioPlayerProvider>().playEpisode(podcast, podcast.episodes.first);
+      }
+    }
   }
 }

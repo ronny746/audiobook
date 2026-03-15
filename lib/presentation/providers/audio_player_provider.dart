@@ -55,13 +55,24 @@ class AudioPlayerProvider with ChangeNotifier {
         }
       }
 
+      Duration? parsedDuration;
+      try {
+        final parts = episode.duration.split(':');
+        if (parts.length == 2) {
+          parsedDuration = Duration(
+            minutes: int.parse(parts[0]),
+            seconds: int.parse(parts[1]),
+          );
+        }
+      } catch (_) {}
+
       final mediaItem = MediaItem(
         id: episode.id,
         album: podcast.title,
         title: episode.title,
         artist: podcast.author,
         artUri: Uri.parse(podcast.imageUrl),
-        duration: Duration(minutes: int.tryParse(episode.duration.split(':').first) ?? 0),
+        duration: parsedDuration,
       );
       _audioHandler.mediaItem.add(mediaItem);
 

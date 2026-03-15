@@ -6,7 +6,10 @@
     "description": "Valmiki rachit mool Sanskrit Ramayana ki sampurna kahani — Shri Ram ke janm se lekar Lanka vijay aur Ayodhya wapsi tak. Har kaand mein Dharma, prem aur tyaag ki anokhi gaatha suniye.",
     "imageUrl": "https://images.unsplash.com/photo-1582201942988-13e60e4556ee?q=80&w=1000&auto=format&fit=crop",
     "category": "Mythology",
+    "playType": "detail",
+    "actionLabel": "Episodes Dekho",
     "youtubePlaylist": "https://youtube.com/playlist?list=PLzT1yw_wugHBzGZHuNmARQQ8MuXm0GuQA",
+    "totalEpisodes": 3,
     "episodes": [
       {
         "id": "ram1",
@@ -14,6 +17,7 @@
         "description": "Raja Dashrath ki putreshti yagya se hua Shri Ram, Lakshman, Bharat aur Shatrughna ka divya janm. Vishwamitra ka aashram raksha aur Sita Swayamvar.",
         "audioUrl": "https://www.youtube.com/watch?v=OP_5VkFEcmQ",
         "sourceType": "youtube",
+        "playType": "youtube",
         "duration": "24:15"
       },
       {
@@ -22,6 +26,7 @@
         "description": "Kaikeyi ke do vardaan aur Shri Ram ka 14 varsh ka vanvas. Dashrath ka dukh, Bharat ki virahini bhakti aur padukaon ka raaj.",
         "audioUrl": "https://www.youtube.com/watch?v=9bZkp7q19f0",
         "sourceType": "youtube",
+        "playType": "youtube",
         "duration": "28:30"
       },
       {
@@ -30,6 +35,7 @@
         "description": "Pawan-putra Hanuman ka samudra laanghan, Sita mata se bhet, Lanka dahan aur Shri Ram ke paas Sita ki khabar lekar wapsi.",
         "audioUrl": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
         "sourceType": "youtube",
+        "playType": "youtube",
         "duration": "31:10"
       }
     ]
@@ -41,7 +47,10 @@
     "description": "Kurukshetra ke maidaan mein Pandavon aur Kauravon ke beech mahaan sangharsh. Bhishma Pratigya se lekar Gita Updesh aur antim vijay tak — Vedvyas rachit is mahakavya ki romanchak kahani.",
     "imageUrl": "https://images.unsplash.com/photo-1606146504237-e94dbbf5b6de?q=80&w=1000&auto=format&fit=crop",
     "category": "Mythology",
-    "youtubePlaylist": "https://www.youtube.com/results?search_query=mahabharata+hindi+kahani",
+    "playType": "detail",
+    "actionLabel": "Episodes Dekho",
+    "youtubePlaylist": "https://www.youtube.com/playlist?list=PLF09DC6F85CA32FA4",
+    "totalEpisodes": 3,
     "episodes": [
       {
         "id": "maha1",
@@ -49,6 +58,7 @@
         "description": "Bhishma ki pratigya, Pandavon aur Kauravon ka bachpan, Dronacharya ki shiksha aur Eklavya ki dard bhari kahani.",
         "audioUrl": "https://www.youtube.com/watch?v=GRgAlFGVPDQ",
         "sourceType": "youtube",
+        "playType": "youtube",
         "duration": "35:20"
       },
       {
@@ -57,6 +67,7 @@
         "description": "Kurukshetra ke maidan mein Arjun ka vishad aur Shri Krishna dwara diya gaya Atma, Karma aur Dharma ka amartulya updesh.",
         "audioUrl": "https://www.youtube.com/watch?v=xOyVbEJVCSE",
         "sourceType": "youtube",
+        "playType": "youtube",
         "duration": "42:00"
       },
       {
@@ -65,6 +76,7 @@
         "description": "Dyut sabha mein Yudhishthir ki haar, Draupadi ka apman aur Bhim ka pratigya — Mahabharat ka sabse hriday-vidaraaak prasang.",
         "audioUrl": "https://www.youtube.com/watch?v=h5ZqkLRIyf0",
         "sourceType": "youtube",
+        "playType": "youtube",
         "duration": "27:45"
       }
     ]
@@ -76,7 +88,9 @@
     "description": "Mughal Samrat Akbar ke darabar mein Birbal ki buddhimani aur haazirzawaabi ke mashhoor qisse. Har kahani ek alag seekh deti hai — common sense aur samajhdaari ki duniya mein.",
     "imageUrl": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1000&auto=format&fit=crop",
     "category": "Folk Tales",
-    "youtubePlaylist": "https://www.youtube.com/results?search_query=akbar+birbal+hindi+kahani",
+    "playType": "direct",
+    "actionLabel": "Abhi Suno",
+    "totalEpisodes": 2,
     "episodes": [
       {
         "id": "birbal1",
@@ -84,6 +98,7 @@
         "description": "Akbar ne Birbal ko Agra ke tamam kawwon ki sankhya ginne ka farmaan diya — Birbal ne aisa jawab diya ki Akbar bhi hans pade.",
         "audioUrl": "https://www.youtube.com/watch?v=zDuCCCQgBkM",
         "sourceType": "youtube",
+        "playType": "direct",
         "duration": "09:15"
       },
       {
@@ -92,6 +107,7 @@
         "description": "Ek videshi pandit ne Akbar ke darbar ko teen achhoot sawaalon se chunauti di — sirf Birbal ne apni hoshiyari se jawaab diya.",
         "audioUrl": "https://www.youtube.com/watch?v=pRCb0HGl_o4",
         "sourceType": "youtube",
+        "playType": "direct",
         "duration": "11:30"
       }
     ]
@@ -103,7 +119,9 @@
     "description": "Vijayanagar Samraajya ke Maharaj Krishnadevaraay ke darabar mein Tenali Rama ke chaturi bhari kahaniyan. Har qisse mein hassi, gyaan aur adbhut buddhimani ka sangam.",
     "imageUrl": "https://images.unsplash.com/photo-1509023464722-18d996393ca8?q=80&w=1000&auto=format&fit=crop",
     "category": "Folk Tales",
-    "youtubePlaylist": "https://www.youtube.com/results?search_query=tenali+rama+hindi+kahani",
+    "playType": "direct",
+    "actionLabel": "Abhi Suno",
+    "totalEpisodes": 2,
     "episodes": [
       {
         "id": "tenali1",
@@ -111,6 +129,7 @@
         "description": "Raja ne ek mushkil shart rakhi — Tenali ne aise hoshiyari se uska hal nikala ki poora darbar dang rah gaya.",
         "audioUrl": "https://www.youtube.com/watch?v=w_Nk2KR_8AI",
         "sourceType": "youtube",
+        "playType": "direct",
         "duration": "10:45"
       },
       {
@@ -119,6 +138,7 @@
         "description": "Rajmata ki billi dudh piti thi — Tenali ne ek aisa totkaa sochha jisne sab ko hasaaya bhi aur sabak bhi diya.",
         "audioUrl": "https://www.youtube.com/watch?v=BGKX8PYmFOU",
         "sourceType": "youtube",
+        "playType": "direct",
         "duration": "08:20"
       }
     ]
@@ -130,22 +150,28 @@
     "description": "Pahaadon ki tanhaai, andheri raaton aur purani haveli mein chupaai bhayaanak aatmaon ki kahaniyan. Ruskin Bond ki kalam se nikli ye daraavni daastanein ek anokha khauff paida karti hain.",
     "imageUrl": "https://images.unsplash.com/photo-1505635330303-319530274830?q=80&w=1000&auto=format&fit=crop",
     "category": "Horror",
-    "youtubePlaylist": "https://www.youtube.com/results?search_query=ruskin+bond+ghost+stories+hindi",
+    "playType": "mp3",
+    "actionLabel": "MP3 Download",
+    "totalEpisodes": 2,
     "episodes": [
       {
         "id": "ghost1",
         "title": "Sar-kata Sawaar – Mussoorie ki Sarak",
         "description": "Mussoorie ki aek sunsan sadak par raat ko ek sar-kata sawaar dikhta hai — teen dosto ka woh safar jinhe apni aankho par yakeen nahi raha.",
-        "audioUrl": "https://www.youtube.com/watch?v=nRJpkRbbOu4",
-        "sourceType": "youtube",
+        "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "sourceType": "mp3",
+        "playType": "mp3",
+        "downloadable": true,
         "duration": "16:40"
       },
       {
         "id": "ghost2",
         "title": "Dak Bungalow ki Aatma",
         "description": "Do musaafir ek veeraane dak bungalow mein raat kaatten hain jahan ek purani aatma ka bhed chupaaya hua hai — Ruskin Bond ki chhayavaadi bhoot kahani.",
-        "audioUrl": "https://www.youtube.com/watch?v=x5e8GdKv9DI",
-        "sourceType": "youtube",
+        "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+        "sourceType": "mp3",
+        "playType": "mp3",
+        "downloadable": true,
         "duration": "19:05"
       }
     ]
@@ -157,22 +183,28 @@
     "description": "Uttarakhand aur Himachal ke gaanvon mein sunaai dene waali sacchi bhoot-pret ki kahaniyan. Pahaadon mein raat, jungle mein akelaapan aur andheron mein chhupi awaazein.",
     "imageUrl": "https://images.unsplash.com/photo-1475274110913-480c45d0e873?q=80&w=1000&auto=format&fit=crop",
     "category": "Horror",
-    "youtubePlaylist": "https://www.youtube.com/results?search_query=hindi+horror+stories+pahad",
+    "playType": "mp3",
+    "actionLabel": "MP3 Download",
+    "totalEpisodes": 2,
     "episodes": [
       {
         "id": "darr1",
         "title": "Jungle mein Raat – Ek Sacchi Kahani",
         "description": "Uttarakhand ke ghane jungle mein ek woodcutter ki sacchi dastaan jo ek raat andhero mein kho gaya — aur jo mila wo insaan nahi tha.",
-        "audioUrl": "https://www.youtube.com/watch?v=zRV7kp-YdRk",
-        "sourceType": "youtube",
+        "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        "sourceType": "mp3",
+        "playType": "mp3",
+        "downloadable": true,
         "duration": "22:10"
       },
       {
         "id": "darr2",
         "title": "Purani Haveli ka Raaz",
         "description": "Rajasthan ki ek bandh haveli ka wo raaz jo peedhiyon se chupaaya gaya tha — ek naujawan ne jab raaz kholne ki koshish ki toh…",
-        "audioUrl": "https://www.youtube.com/watch?v=aVzr14JvzMQ",
-        "sourceType": "youtube",
+        "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        "sourceType": "mp3",
+        "playType": "mp3",
+        "downloadable": true,
         "duration": "18:55"
       }
     ]
@@ -184,7 +216,9 @@
     "description": "Vishnu Sharma rachit pracheen Bharatiya neeti-kathaon ka sangreh. Janwaron ke maध्यam se diye gaye gyaan ke ye qisse bacchon aur baadon dono ke liye utne hi aaj bhi prasangik hain.",
     "imageUrl": "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1000&auto=format&fit=crop",
     "category": "Kids",
-    "youtubePlaylist": "https://www.youtube.com/results?search_query=panchatantra+ki+kahaniya+hindi",
+    "playType": "detail",
+    "actionLabel": "Episodes Dekho",
+    "totalEpisodes": 3,
     "episodes": [
       {
         "id": "panch1",
@@ -192,6 +226,7 @@
         "description": "Jungle ka zaalim sher roz ek janwar ko khaata tha — ek chhote khargosh ne apni buddhimani se poore jungle ko azaad karaa diya.",
         "audioUrl": "https://www.youtube.com/watch?v=5mJXiHuV5sI",
         "sourceType": "youtube",
+        "playType": "youtube",
         "duration": "07:30"
       },
       {
@@ -200,6 +235,7 @@
         "description": "Ek kachhua dono haanso ke saath ek dande ke sahaare urna chahta tha — lekin uski baton ne use musibat mein daal diya. Mool seekh: Moun hi sone ka haar hai.",
         "audioUrl": "https://www.youtube.com/watch?v=9e2Y4H0hG_A",
         "sourceType": "youtube",
+        "playType": "youtube",
         "duration": "06:45"
       },
       {
@@ -208,6 +244,7 @@
         "description": "Ek giddar nile rang ke drum mein gir gaya aur jungle ka raja ban gaya — par ek din uski asli awaaz ne sab raaz khol diya.",
         "audioUrl": "https://www.youtube.com/watch?v=wB2QSn7JQZE",
         "sourceType": "youtube",
+        "playType": "youtube",
         "duration": "08:00"
       }
     ]
@@ -219,7 +256,9 @@
     "description": "Mahatma Buddh ke poorv janmon ki prem, sahishnuta aur gyan se bhari 2500 saal purani kahaniyan. Bacchon ke liye sarvakalik sheershtha neeti-kathaon mein se ek.",
     "imageUrl": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=1000&auto=format&fit=crop",
     "category": "Kids",
-    "youtubePlaylist": "https://www.youtube.com/results?search_query=jataka+tales+hindi+kids",
+    "playType": "direct",
+    "actionLabel": "Abhi Suno",
+    "totalEpisodes": 2,
     "episodes": [
       {
         "id": "jataka1",
@@ -227,6 +266,7 @@
         "description": "Ek sone ke rang ka hiran aur uski shaan — Raja ne usse maarne ki koshish ki par hiran ki sachaai ne Raja ka dil bhi badal diya.",
         "audioUrl": "https://www.youtube.com/watch?v=jgfIWBf1YoY",
         "sourceType": "youtube",
+        "playType": "direct",
         "duration": "09:50"
       },
       {
@@ -235,6 +275,7 @@
         "description": "Ek bandar aur magarmach ki dosti — jabki magarmach ki patni ko bandar ka dil khaana tha. Bandar ne buddhimani se apni jaan bachaayi.",
         "audioUrl": "https://www.youtube.com/watch?v=GI7zCEw49qE",
         "sourceType": "youtube",
+        "playType": "direct",
         "duration": "10:15"
       }
     ]
@@ -246,7 +287,9 @@
     "description": "Bharat ki woh vaigyaanik aur saanskritik uplabdhiyaan jo paschimi itihaas mein daba di gayin. Vedic kaal se lekar Gupta Samraajya tak ke gumnaam heroes aur vishwaas-heelag khojein.",
     "imageUrl": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1000&auto=format&fit=crop",
     "category": "Education",
-    "youtubePlaylist": "https://www.youtube.com/results?search_query=ancient+india+history+hindi+documentary",
+    "playType": "detail",
+    "actionLabel": "Episodes Dekho",
+    "totalEpisodes": 3,
     "episodes": [
       {
         "id": "hist1",
@@ -254,6 +297,7 @@
         "description": "Hazar saal pehle Bharat ke rishiyon ne nakshatra vigyan ko itna sateek dhang se paribhashit kiya tha jo aaj bhi aascharychakita karta hai — telescope se bhi pehle.",
         "audioUrl": "https://www.youtube.com/watch?v=0Xvy0GVBLRk",
         "sourceType": "youtube",
+        "playType": "youtube",
         "duration": "21:40"
       },
       {
@@ -262,6 +306,7 @@
         "description": "5000 saal purani duniya ki sabse advitiya nagariya sabhyata — Mohenjo Daro aur Harappa ke nagar achanak kyun khatam ho gaye? Aaj bhi ye rahasya ban hui hai.",
         "audioUrl": "https://www.youtube.com/watch?v=1xNboW-J5xk",
         "sourceType": "youtube",
+        "playType": "youtube",
         "duration": "26:15"
       },
       {
@@ -270,6 +315,7 @@
         "description": "Ek garib brahmin aur ek vanawaasi ladke ne milkar poore Bharat ko ek soot mein kaise piroya — Chanakya Neeti aur Maurya Samraajya ki romanchak daastaan.",
         "audioUrl": "https://www.youtube.com/watch?v=BI1tHkiCSBE",
         "sourceType": "youtube",
+        "playType": "youtube",
         "duration": "33:05"
       }
     ]
@@ -281,22 +327,28 @@
     "description": "Aryabhatta ka shunya, Sushruta ki surgery, Baudhaayan ka Pythagoras theorem — Bharat ke woh mahaan vaigyaanik aur ganiteegy jinhone vishwa ko naye raste dikhaayen.",
     "imageUrl": "https://images.unsplash.com/photo-1532153975070-2e9ab71f1b14?q=80&w=1000&auto=format&fit=crop",
     "category": "Education",
-    "youtubePlaylist": "https://www.youtube.com/results?search_query=india+ancient+science+inventors+hindi",
+    "playType": "mp3",
+    "actionLabel": "MP3 Download",
+    "totalEpisodes": 2,
     "episodes": [
       {
         "id": "sci1",
         "title": "Aryabhatta – Shunya ka Aavishkaar",
         "description": "Panchwin sadi ke mahaan ganiteegy Aryabhatta ne shunya aur dashmlav pranali di — aaj ki poori digital duniya usi shunya ki neev par khadi hai.",
-        "audioUrl": "https://www.youtube.com/watch?v=pJlgjrKzMrk",
-        "sourceType": "youtube",
+        "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+        "sourceType": "mp3",
+        "playType": "mp3",
+        "downloadable": true,
         "duration": "18:30"
       },
       {
         "id": "sci2",
         "title": "Sushruta – Duniya ke Pehle Surgeon",
         "description": "2600 saal pehle Varanasi mein Sushruta ne plastic surgery aur cataract operation kiye — aaj ke modern medicine ne unhi ke footsteps follow kiye hain.",
-        "audioUrl": "https://www.youtube.com/watch?v=vHe7QnqGPDs",
-        "sourceType": "youtube",
+        "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+        "sourceType": "mp3",
+        "playType": "mp3",
+        "downloadable": true,
         "duration": "20:00"
       }
     ]

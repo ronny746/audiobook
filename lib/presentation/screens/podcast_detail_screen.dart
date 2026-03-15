@@ -422,15 +422,23 @@ class _PodcastDetailScreenState extends State<PodcastDetailScreen> {
             ],
           ),
         ),
-        trailing: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.1),
-            shape: BoxShape.circle,
-          ),
-          child: IconButton(
-            icon: const Icon(Icons.more_vert_rounded, color: Colors.grey, size: 20),
-            onPressed: () {},
-          ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (episode.downloadable)
+              IconButton(
+                icon: const Icon(Icons.download_for_offline_outlined, color: AppColors.saffron, size: 22),
+                onPressed: () {
+                   ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Downloading..."), duration: Duration(seconds: 1)),
+                  );
+                },
+              ),
+            IconButton(
+              icon: const Icon(Icons.more_vert_rounded, color: Colors.grey, size: 20),
+              onPressed: () {},
+            ),
+          ],
         ),
         onTap: () {
           context.read<AudioPlayerProvider>().playEpisode(widget.podcast, episode);
