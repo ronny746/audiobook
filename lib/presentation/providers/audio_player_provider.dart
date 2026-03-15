@@ -37,14 +37,19 @@ class AudioPlayerProvider with ChangeNotifier {
     
     _currentPodcast = podcast;
     _currentEpisode = episode;
-    _isExtracting = true;
-    notifyListeners();
+    
+    // Only show extracting state if we are actually going to extract from YouTube
+    if (episode.sourceType == "youtube" && episode.playType != "direct") {
+      _isExtracting = true;
+      notifyListeners();
+    }
     
     try {
       String audioUrl = episode.audioUrl;
 
       // 1. If it's a YouTube source, extract/cache the real URL
-      if (episode.sourceType == "youtube") {
+      // Skip extraction if playType is "direct"
+      if (episode.sourceType == "youtube" && episode.playType != "direct") {
         debugPrint("Extracting YouTube audio for: ${episode.title}");
         final String? extractedUrl = await _youtubeService.getAudioUrl(episode.audioUrl);
         

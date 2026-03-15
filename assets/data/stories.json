@@ -43,39 +43,6 @@
         "playType": "direct",
         "duration": "16:29",
         "plays": "8.4K"
-      },
-      {
-        "id": "kwst4",
-        "title": "#9 Purani Haveli Ke Pishaach",
-        "description": "Kyun hamein purani havelion mein jaane se mana kiya jaata hai? Aaiye jaante hain ye raaz.",
-        "audioUrl": "https://play.hubhopper.com/d72834636f85976ef527dcc92f4e6caa.mp3?s=myuse",
-        "downloadUrl": "https://download.hubhopper.com/d72834636f85976ef527dcc92f4e6caa.mp3?s=myuse",
-        "sourceType": "mp3",
-        "playType": "direct",
-        "duration": "15:33",
-        "plays": "8.8K"
-      },
-      {
-        "id": "kwst5",
-        "title": "#21 Mrityusangeet",
-        "description": "Kya aapne kabhi mrityu ko apne qarib mehsoos kiya? Ek aisi kahani jo har baar sunne par rula deti hai.",
-        "audioUrl": "https://play.hubhopper.com/4fc4d6e0da6e337070dd8f0f55c4ce06.mp3?s=myuse",
-        "downloadUrl": "https://download.hubhopper.com/4fc4d6e0da6e337070dd8f0f55c4ce06.mp3?s=myuse",
-        "sourceType": "mp3",
-        "playType": "direct",
-        "duration": "16:26",
-        "plays": "8.9K"
-      },
-      {
-        "id": "kwst6",
-        "title": "#40 Haunted Night",
-        "description": "Ek raat jisne Shekhar ki zindagi badal di — illusion tha ya sach? Woh aaj bhi nahi jaanta.",
-        "audioUrl": "https://play.hubhopper.com/00163be16815c12621c5d91bb05320e4.mp3?s=myuse",
-        "downloadUrl": "https://download.hubhopper.com/00163be16815c12621c5d91bb05320e4.mp3?s=myuse",
-        "sourceType": "mp3",
-        "playType": "direct",
-        "duration": "16:28",
-        "plays": "10K"
       }
     ]
   },
@@ -101,61 +68,139 @@
         "playType": "direct",
         "duration": "12:16",
         "plays": "6K"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Lo-Fi Indian Beats",
+    "author": "Chill Nation",
+    "description": "Studying ya relaxation ke liye best Indian instrumentals aur Lo-Fi beats. Shanti aur sukoon ke liye.",
+    "imageUrl": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1000&auto=format&fit=crop",
+    "category": "Music",
+    "playType": "direct",
+    "actionLabel": "Play Now",
+    "sourceType": "youtube",
+    "totalEpisodes": 3,
+    "episodes": [
+      {
+        "id": "mus1",
+        "title": "Midnight Raag – Sitar Lo-Fi",
+        "description": "Calm sitar melody with rainy lofi beats.",
+        "audioUrl": "https://www.youtube.com/watch?v=5qap5aO4i9A",
+        "sourceType": "youtube",
+        "playType": "direct",
+        "duration": "04:20"
       },
       {
-        "id": "il2",
-        "title": "Ep 2 – Pyaar ka Pehla Izhaar",
-        "description": "Rishi jaanta tha Nikita Agra tour par ja rahi hai — ye uska aakhri mauka tha number maangne ka.",
-        "audioUrl": "https://play.hubhopper.com/b718649f139956f5dfba487383077cc9.mp3?s=myuse",
-        "downloadUrl": "https://download.hubhopper.com/b718649f139956f5dfba487383077cc9.mp3?s=myuse",
-        "sourceType": "mp3",
+        "id": "mus2",
+        "title": "Ganga Ghat – Flute Meditation",
+        "description": "Soothing flute sounds from the banks of Ganga.",
+        "audioUrl": "https://www.youtube.com/watch?v=2OEL4P1Rz04",
+        "sourceType": "youtube",
         "playType": "direct",
-        "duration": "10:14",
-        "plays": "8.4K"
+        "duration": "08:15"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "title": "Ramayana – Valmiki Katha",
+    "author": "Sadhguru",
+    "description": "Shri Ram ki sampurna katha — dharma, prem aur tyaag ki anokhi gaatha.",
+    "imageUrl": "https://images.unsplash.com/photo-1582201942988-13e60e4556ee?q=80&w=1000&auto=format&fit=crop",
+    "category": "Mythology",
+    "playType": "detail",
+    "actionLabel": "Explore",
+    "sourceType": "youtube",
+    "totalEpisodes": 12,
+    "episodes": [
+      {
+        "id": "ram1",
+        "title": "Shri Ram Janm",
+        "description": "Raja Dashrath ke ghar charo bhaion ka janm.",
+        "audioUrl": "https://www.youtube.com/watch?v=OP_5VkFEcmQ",
+        "sourceType": "youtube",
+        "playType": "youtube",
+        "duration": "24:15"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "title": "Divine Mantras",
+    "author": "Spiritual India",
+    "description": "Powerful mantras for daily positive energy and peace. Om Namah Shivaya to Gayatri Mantra.",
+    "imageUrl": "https://images.unsplash.com/photo-1604881991720-f91add269bed?q=80&w=1000&auto=format&fit=crop",
+    "category": "Spiritual",
+    "playType": "direct",
+    "actionLabel": "Listen Now",
+    "sourceType": "youtube",
+    "totalEpisodes": 5,
+    "episodes": [
+      {
+        "id": "man1",
+        "title": "Maha Mrityunjaya Mantra",
+        "description": "Powerful healing mantra of Lord Shiva.",
+        "audioUrl": "https://www.youtube.com/watch?v=3S3pP8v7Qpk",
+        "sourceType": "youtube",
+        "playType": "direct",
+        "duration": "11:00"
       },
       {
-        "id": "il3",
-        "title": "Ep 4 – I Love You",
-        "description": "Pehli date, ek pendant, aur pyaar ka pehla izhaar — Rishi ne Nikita ke gaal par kiss kiya.",
-        "audioUrl": "https://play.hubhopper.com/281ea985b386d84632527d603ab9af70.mp3?s=myuse",
-        "downloadUrl": "https://download.hubhopper.com/281ea985b386d84632527d603ab9af70.mp3?s=myuse",
-        "sourceType": "mp3",
+        "id": "man2",
+        "title": "Gayatri Mantra – 108 Times",
+        "description": "The mother of all mantras for wisdom and light.",
+        "audioUrl": "https://www.youtube.com/watch?v=Z-f8_bL6K2w",
+        "sourceType": "youtube",
         "playType": "direct",
-        "duration": "11:46",
-        "plays": "9.8K"
-      },
+        "duration": "45:00"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "title": "Kids Special – Panchatantra",
+    "author": "Dadi Ma",
+    "description": "Bacchon ke liye moral stories aur neeti kathaon ka sangreh.",
+    "imageUrl": "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1000&auto=format&fit=crop",
+    "category": "Kids",
+    "playType": "detail",
+    "actionLabel": "Bacchon ke liye",
+    "sourceType": "youtube",
+    "totalEpisodes": 25,
+    "episodes": [
       {
-        "id": "il4",
-        "title": "S2Ep1 – Nayi Shuruaat",
-        "description": "Breakup ke baad Rishi Mumbai mein naya career shuru karta hai — lekin Nikita wahi company mein hai.",
-        "audioUrl": "https://play.hubhopper.com/c05d6025cc6ec4bda2ab67c9da14855e.mp3?s=myuse",
-        "downloadUrl": "https://download.hubhopper.com/c05d6025cc6ec4bda2ab67c9da14855e.mp3?s=myuse",
-        "sourceType": "mp3",
-        "playType": "direct",
-        "duration": "11:23",
-        "plays": "6.2K"
-      },
+        "id": "kid1",
+        "title": "Chattur Khargosh",
+        "description": "Buddhimani se kaise sher ko haraya.",
+        "audioUrl": "https://www.youtube.com/watch?v=5mJXiHuV5sI",
+        "sourceType": "youtube",
+        "playType": "youtube",
+        "duration": "07:30"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "title": "Bollywood Retro Hits",
+    "author": "Radio Nasha",
+    "description": "Kishore Kumar, Lata Mangeshkar aur Mohd. Rafi ke evergreen songs ka collection.",
+    "imageUrl": "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop",
+    "category": "Music",
+    "playType": "direct",
+    "actionLabel": "Non-stop Retro",
+    "sourceType": "youtube",
+    "totalEpisodes": 10,
+    "episodes": [
       {
-        "id": "il5",
-        "title": "S2Ep4 – Lights, Camera, Raaz",
-        "description": "Shoot ke dauran ek misunderstanding — aur Kumar-Nikita ki dil se baat. Kya Rishi sach jaanega?",
-        "audioUrl": "https://play.hubhopper.com/32a0227051833a19c60547b1317b7159.mp3?s=myuse",
-        "downloadUrl": "https://download.hubhopper.com/32a0227051833a19c60547b1317b7159.mp3?s=myuse",
-        "sourceType": "mp3",
+        "id": "song1",
+        "title": "Zindagi Ek Safar – Kishore Kumar",
+        "description": "Classic road trip song from Andaz.",
+        "audioUrl": "https://www.youtube.com/watch?v=yYf-C-B97_4",
+        "sourceType": "youtube",
         "playType": "direct",
-        "duration": "11:13",
-        "plays": "7.3K"
-      },
-      {
-        "id": "il6",
-        "title": "S2Ep10 – Confessions",
-        "description": "Rishi ne office ke saamne culprit ko expose kiya — saboot ke saath. Poori saazish ka anjaam.",
-        "audioUrl": "https://play.hubhopper.com/7759690ab7ebe0b4e1f6a8e4ebaea817.mp3?s=myuse",
-        "downloadUrl": "https://download.hubhopper.com/7759690ab7ebe0b4e1f6a8e4ebaea817.mp3?s=myuse",
-        "sourceType": "mp3",
-        "playType": "direct",
-        "duration": "18:05",
-        "plays": "1.8K"
+        "duration": "04:30"
       }
     ]
   }
