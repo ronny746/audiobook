@@ -24,9 +24,8 @@ class MiniPlayer extends StatelessWidget {
         );
       },
       child: Container(
-        height: 65,
+        height: 70,
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
@@ -38,59 +37,89 @@ class MiniPlayer extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
+        child: Column(
           children: [
-            // Thumbnail
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: CachedNetworkImage(
-                imageUrl: podcast.imageUrl,
-                width: 45,
-                height: 45,
-                fit: BoxFit.cover,
-              ),
-            ),
-            const SizedBox(width: 12),
-            // Title & Author
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    episode.title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-                  ),
-                  Text(
-                    podcast.title,
-                    style: TextStyle(color: AppColors.textSecondary, fontSize: 11),
-                  ),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  children: [
+                    // Thumbnail
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: CachedNetworkImage(
+                        imageUrl: podcast.imageUrl,
+                        width: 45,
+                        height: 45,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    // Title & Author
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            episode.title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                          ),
+                          Text(
+                            podcast.title,
+                            style: TextStyle(color: AppColors.textSecondary, fontSize: 11),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Controls
+                    if (audioProvider.isExtracting)
+                      const Padding(
+                        padding: EdgeInsets.all(12.0),
+                        child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.saffron),
+                        ),
+                      )
+                    else
+                      IconButton(
+                        icon: Icon(
+                          audioProvider.isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                          color: AppColors.deepMaroon,
+                        ),
+                        onPressed: () => audioProvider.togglePlay(),
+                      ),
+                    IconButton(
+                      icon: const Icon(Icons.close_rounded, color: Colors.grey, size: 20),
+                      onPressed: () => audioProvider.stop(),
+                    ),
+                  ],
+                ),
               ),
             ),
-            // Controls
-            if (audioProvider.isExtracting)
-              const Padding(
-                padding: EdgeInsets.all(12.0),
-                child: SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.saffron),
-                ),
-              )
-            else
-              IconButton(
-                icon: Icon(
-                  audioProvider.isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
-                  color: AppColors.deepMaroon,
-                ),
-                onPressed: () => audioProvider.togglePlay(),
-              ),
-            IconButton(
-              icon: const Icon(Icons.close_rounded, color: Colors.grey, size: 20),
-              onPressed: () => audioProvider.stop(),
+            // Mini Slider (Progress Indicator)
+            StreamBuilder<Duration>(
+              stream: audioProvider.positionStream,
+              builder: (context, snapshot) {
+                final position = snapshot.data ?? Duration.zero;
+                final total = audioProvider.duration ?? Duration.zero;
+                double progress = 0.0;
+                if (total.inMilliseconds > 0) {
+                  progress = position.inMilliseconds / total.inMilliseconds;
+                }
+                return ClipRRect(
+                  borderRadius: const BorderRadius.vertical(bottom: Radius.circular(15)),
+                  child: LinearProgressIndicator(
+                    value: progress.clamp(0.0, 1.0),
+                    backgroundColor: AppColors.saffron.withOpacity(0.1),
+                    valueColor: const AlwaysStoppedAnimation<Color>(AppColors.saffron),
+                    minHeight: 3,
+                  ),
+                );
+              },
             ),
           ],
         ),

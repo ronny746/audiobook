@@ -18,6 +18,11 @@ class AudioPlayerProvider with ChangeNotifier {
   bool get isPlaying => player.playing;
   bool get isExtracting => _isExtracting;
   
+  // Streams for UI progress
+  Stream<Duration> get positionStream => player.positionStream;
+  Stream<Duration?> get durationStream => player.durationStream;
+  Duration? get duration => player.duration;
+  
   AudioPlayerProvider(this._audioHandler) {
     _init();
   }
