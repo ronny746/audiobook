@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:marquee/marquee.dart';
 import '../../core/theme/app_theme.dart';
 import '../providers/audio_player_provider.dart';
 import '../screens/player_screen.dart';
@@ -18,14 +19,13 @@ class MiniPlayer extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
+        Navigator.of(context, rootNavigator: true).push(
           MaterialPageRoute(builder: (context) => const PlayerScreen()),
         );
       },
       child: Container(
-        height: 70,
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        height: 64,
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
@@ -47,11 +47,13 @@ class MiniPlayer extends StatelessWidget {
                     // Thumbnail
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: CachedNetworkImage(
-                        imageUrl: podcast.imageUrl,
-                        width: 45,
-                        height: 45,
-                        fit: BoxFit.cover,
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: CachedNetworkImage(
+                          imageUrl: podcast.imageUrl,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Container(color: Colors.grey[100]),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -61,15 +63,31 @@ class MiniPlayer extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            episode.title,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                          SizedBox(
+                            height: 18,
+                            child: Marquee(
+                              text: episode.title,
+                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                              scrollAxis: Axis.horizontal,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              blankSpace: 20.0,
+                              velocity: 30.0,
+                              pauseAfterRound: const Duration(seconds: 1),
+                              startPadding: 10.0,
+                            ),
                           ),
-                          Text(
-                            podcast.title,
-                            style: TextStyle(color: AppColors.textSecondary, fontSize: 11),
+                          SizedBox(
+                            height: 14,
+                            child: Marquee(
+                              text: podcast.title,
+                              style: TextStyle(color: AppColors.textSecondary, fontSize: 10),
+                              scrollAxis: Axis.horizontal,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              blankSpace: 20.0,
+                              velocity: 25.0,
+                              pauseAfterRound: const Duration(seconds: 2),
+                              startPadding: 10.0,
+                            ),
                           ),
                         ],
                       ),

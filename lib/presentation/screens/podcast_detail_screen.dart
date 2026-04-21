@@ -10,8 +10,9 @@ import 'player_screen.dart';
 
 class PodcastDetailScreen extends StatefulWidget {
   final Podcast podcast;
+  final List<Podcast>? playlist;
 
-  const PodcastDetailScreen({super.key, required this.podcast});
+  const PodcastDetailScreen({super.key, required this.podcast, this.playlist});
 
   @override
   State<PodcastDetailScreen> createState() => _PodcastDetailScreenState();
@@ -80,7 +81,7 @@ class _PodcastDetailScreenState extends State<PodcastDetailScreen> {
                           ),
                           const SizedBox(width: 12),
                           Text(
-                            "Episodes (${widget.podcast.episodes.length})",
+                            "Tracks (${widget.podcast.episodes.length})",
                             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.deepMaroon,
@@ -98,7 +99,20 @@ class _PodcastDetailScreenState extends State<PodcastDetailScreen> {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     final episode = widget.podcast.episodes[index];
-                    return _buildEpisodeItem(context, episode);
+                    return GestureDetector(
+                      onTap: () {
+                        context.read<AudioPlayerProvider>().playEpisode(
+                          widget.podcast, 
+                          episode,
+                          queue: widget.playlist,
+                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const PlayerScreen()),
+                        );
+                      },
+                      child: _buildEpisodeItem(context, episode),
+                    );
                   },
                   childCount: widget.podcast.episodes.length,
                 ),
@@ -113,13 +127,6 @@ class _PodcastDetailScreenState extends State<PodcastDetailScreen> {
             ],
           ),
           
-          if (isPlayerActive)
-            const Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: MiniPlayer(),
-            ),
         ],
       ),
     );
@@ -127,8 +134,12 @@ class _PodcastDetailScreenState extends State<PodcastDetailScreen> {
 
   Widget _buildRecommendedSection(BuildContext context) {
     final storyProvider = context.watch<StoryProvider>();
-    final otherPodcasts = storyProvider.podcasts
+    
+    // Flatten all home sections to find related items
+    final allPodcasts = storyProvider.homeSections.values.expand((x) => x).toList();
+    final otherPodcasts = allPodcasts
         .where((p) => p.id != widget.podcast.id)
+        .take(10)
         .toList();
 
     if (otherPodcasts.isEmpty) return const SliverToBoxAdapter(child: SizedBox.shrink());
@@ -181,13 +192,15 @@ class _PodcastDetailScreenState extends State<PodcastDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: CachedNetworkImage(
-                imageUrl: podcast.imageUrl,
-                height: 120,
-                width: 140,
-                fit: BoxFit.cover,
+            AspectRatio(
+              aspectRatio: 1,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: CachedNetworkImage(
+                  imageUrl: podcast.imageUrl,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Container(color: Colors.grey[200]),
+                ),
               ),
             ),
             const SizedBox(height: 8),
@@ -244,7 +257,7 @@ class _PodcastDetailScreenState extends State<PodcastDetailScreen> {
       ],
       flexibleSpace: FlexibleSpaceBar(
         title: _showActionsInAppBar 
-          ? Text(widget.podcast.title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold))
+          ? Text(widget.podcast.title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.white))
           : null,
         background: Stack(
           fit: StackFit.expand,
@@ -442,7 +455,9 @@ class _PodcastDetailScreenState extends State<PodcastDetailScreen> {
         ),
         onTap: () {
           context.read<AudioPlayerProvider>().playEpisode(widget.podcast, episode);
-          Navigator.push(context, MaterialPageRoute(builder: (_) => const PlayerScreen()));
+          Navigator.of(context, rootNavigator: true).push(
+            MaterialPageRoute(builder: (_) => const PlayerScreen()),
+          );
         },
       ),
     );

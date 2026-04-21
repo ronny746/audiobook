@@ -29,19 +29,23 @@ class AudioPlayerWidget extends StatelessWidget {
             // Slider Section
             SliderTheme(
               data: SliderTheme.of(context).copyWith(
-                trackHeight: 6,
+                trackHeight: 4,
                 activeTrackColor: AppColors.deepMaroon,
                 inactiveTrackColor: AppColors.deepMaroon.withOpacity(0.1),
                 thumbColor: AppColors.deepMaroon,
-                thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 8, elevation: 5),
-                overlayShape: const RoundSliderOverlayShape(overlayRadius: 16),
+                thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+                overlayShape: const RoundSliderOverlayShape(overlayRadius: 14),
                 trackShape: const RoundedRectSliderTrackShape(),
               ),
               child: Slider(
-                value: position.inSeconds.toDouble(),
+                value: (position.inSeconds.toDouble() <= (duration.inSeconds.toDouble() > 0 ? duration.inSeconds.toDouble() : 1.0)) 
+                       ? position.inSeconds.toDouble() 
+                       : 0.0,
                 max: duration.inSeconds.toDouble() > 0 ? duration.inSeconds.toDouble() : 1.0,
                 onChanged: (value) {
-                  player.seek(Duration(seconds: value.toInt()));
+                  if (duration.inSeconds > 0) {
+                    player.seek(Duration(seconds: value.toInt()));
+                  }
                 },
               ),
             ),
@@ -50,49 +54,38 @@ class AudioPlayerWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                   Text(
                     _formatDuration(position), 
-                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.deepMaroon),
+                    style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.deepMaroon.withOpacity(0.6)),
                   ),
                   Text(
                     _formatDuration(duration), 
-                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.deepMaroon),
+                    style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.deepMaroon.withOpacity(0.6)),
                   ),
                 ],
               ),
             ),
             
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             
             // Main Controls
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.shuffle_rounded, color: AppColors.lightBrown, size: 24),
-                  onPressed: () {},
+                  icon: const Icon(Icons.skip_previous_rounded, size: 48, color: AppColors.deepMaroon),
+                  onPressed: () => audioProvider.playPreviousEpisode(),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.skip_previous_rounded, size: 42, color: AppColors.deepMaroon),
-                  onPressed: () {},
-                ),
-                
+                const SizedBox(width: 20),
                 // Play Button
                 GestureDetector(
                   onTap: () => audioProvider.togglePlay(),
                   child: Container(
-                    width: 75,
-                    height: 75,
-                    decoration: BoxDecoration(
+                    width: 70,
+                    height: 70,
+                    decoration: const BoxDecoration(
                       color: AppColors.deepMaroon,
                       shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.deepMaroon.withOpacity(0.4),
-                          blurRadius: 25,
-                          offset: const Offset(0, 10),
-                        ),
-                      ],
                     ),
                     child: Icon(
                       audioProvider.isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
@@ -101,14 +94,10 @@ class AudioPlayerWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                
+                const SizedBox(width: 20),
                 IconButton(
-                  icon: const Icon(Icons.skip_next_rounded, size: 42, color: AppColors.deepMaroon),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: const Icon(Icons.repeat_rounded, color: AppColors.lightBrown, size: 24),
-                  onPressed: () {},
+                  icon: const Icon(Icons.skip_next_rounded, size: 48, color: AppColors.deepMaroon),
+                  onPressed: () => audioProvider.playNextEpisode(),
                 ),
               ],
             ),

@@ -1,16 +1,15 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '../../data/models/story.dart';
-import '../../data/services/api_service.dart';
+import '../../core/services/content_service.dart';
 
 class StoryProvider with ChangeNotifier {
-  final ApiService _apiService = ApiService();
-  List<Podcast> _podcasts = [];
+  Map<String, List<Podcast>> _homeSections = {};
+  List<Podcast> _searchResults = [];
   bool _isLoading = false;
   String? _errorMessage;
 
-  List<Podcast> get podcasts => _podcasts;
+  Map<String, List<Podcast>> get homeSections => _homeSections;
+  List<Podcast> get searchResults => _searchResults;
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
 
@@ -20,28 +19,46 @@ class StoryProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      // 1. Try to fetch from API
-      _podcasts = await _apiService.fetchStories();
-      
-      // 2. If API returns empty or fails (mocked for now), use local fallback
-      if (_podcasts.isEmpty) {
-        debugPrint("API returned empty, using local fallback...");
-        final String localData = await rootBundle.loadString('assets/data/stories.json');
-        final List<dynamic> jsonList = json.decode(localData);
-        _podcasts = jsonList.map((json) => Podcast.fromJson(json)).toList();
+      _homeSections = await ContentService.getHomeContent();
+      if (_homeSections.isEmpty) {
+        _errorMessage = "No content found.";
       }
     } catch (e) {
-      debugPrint("API Error: $e. Falling back to local data...");
-      try {
-        final String localData = await rootBundle.loadString('assets/data/stories.json');
-        final List<dynamic> jsonList = json.decode(localData);
-        _podcasts = jsonList.map((json) => Podcast.fromJson(json)).toList();
-      } catch (innerError) {
-        _errorMessage = "Failed to load stories: $innerError";
-      }
+      debugPrint("API Error: $e");
+      _errorMessage = "Failed to load content.";
     } finally {
       _isLoading = false;
       notifyListeners();
+    }
+  }
+
+  Future<void> search(String query) async {
+    if (query.isEmpty) {
+      _searchResults = [];
+      notifyListeners();
+      return;
+    }
+    
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      _searchResults = await ContentService.searchContent(query);
+    } catch (e) {
+      debugPrint("Search Error: $e.");
+      _searchResults = [];
+      _errorMessage = "Failed to search content.";
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> trackPlayback(String contentId) async {
+    try {
+      await ContentService.trackPlayback(contentId);
+    } catch (e) {
+      debugPrint("Error tracking playback: $e");
     }
   }
 }

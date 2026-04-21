@@ -5,7 +5,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/theme/app_theme.dart';
 import '../providers/audio_player_provider.dart';
 import '../widgets/audio_player_widget.dart';
+import '../providers/room_sync_provider.dart';
 import '../../data/models/story.dart';
+import '../providers/auth_provider.dart';
 
 class PlayerScreen extends StatefulWidget {
   const PlayerScreen({super.key});
@@ -24,6 +26,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
     final episode = audioProvider.currentEpisode;
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
+  
 
     if (podcast == null || episode == null) {
       return const Scaffold(body: Center(child: Text("No episode selected")));
@@ -62,46 +65,65 @@ class _PlayerScreenState extends State<PlayerScreen> {
               ),
             ),
           ),
-          
+
           SafeArea(
             child: Column(
               children: [
                 // Top Bar
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
                         onPressed: () => Navigator.pop(context),
-                        icon: const Icon(Icons.keyboard_arrow_down, size: 32),
+                        icon: const Icon(Icons.keyboard_arrow_down_rounded,
+                            size: 36),
                         color: AppColors.deepMaroon,
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            "PLAYING FROM PODCAST",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
-                              color: AppColors.deepMaroon.withOpacity(0.6),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              "NOW PLAYING",
+                              style: TextStyle(
+                                fontSize: 9,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 2,
+                                color: AppColors.deepMaroon.withOpacity(0.5),
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            podcast.title,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.textPrimary,
+                            const SizedBox(height: 4),
+                            Text(
+                              podcast.title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.deepMaroon,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                      ),
+                      Consumer<RoomSyncProvider>(
+                        builder: (context, syncProvider, _) {
+                          return IconButton(
+                            onPressed: () => _showSyncDialog(context, syncProvider),
+                            icon: Icon(
+                              syncProvider.isConnected 
+                                ? Icons.people_rounded 
+                                : Icons.people_outline_rounded,
+                              color: syncProvider.isConnected ? AppColors.saffron : AppColors.deepMaroon,
+                            ),
+                          );
+                        },
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(Icons.more_vert),
+                        icon: const Icon(Icons.more_horiz_rounded),
                         color: AppColors.deepMaroon,
                       ),
                     ],
@@ -111,15 +133,15 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 Expanded(
                   child: AnimatedSwitcher(
                     duration: const Duration(milliseconds: 500),
-                    child: showLyrics 
-                      ? _buildLyricsView(episode) 
-                      : _buildPlayerView(podcast, episode, screenHeight),
+                    child: showLyrics
+                        ? _buildLyricsView(episode)
+                        : _buildPlayerView(podcast, episode, screenHeight),
                   ),
                 ),
 
                 // Player Controls Section
-                _buildControlsSection(episode, audioProvider),
-                
+                _buildControlsSection(podcast, episode, audioProvider),
+
                 const SizedBox(height: 20),
               ],
             ),
@@ -130,7 +152,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
             Container(
               color: Colors.black.withOpacity(0.6),
               child: BackdropFilter(
-                filter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.darken),
+                filter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.2), BlendMode.darken),
                 child: Center(
                   child: Container(
                     padding: const EdgeInsets.all(32),
@@ -145,24 +168,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
                         )
                       ],
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const CircularProgressIndicator(
-                          color: AppColors.saffron,
-                          strokeWidth: 5,
-                        ),
-                        const SizedBox(height: 24),
-                        Text(
-                          "Expanding Story...",
-                          style: TextStyle(
-                            color: AppColors.deepMaroon,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            letterSpacing: 0.5,
-                          ),
-                        ),
-                      ],
+                    child: const CircularProgressIndicator(
+                      color: AppColors.saffron,
+                      strokeWidth: 5,
                     ),
                   ),
                 ).animate().scale(duration: 400.ms, curve: Curves.easeOut),
@@ -173,111 +181,86 @@ class _PlayerScreenState extends State<PlayerScreen> {
     );
   }
 
-  Widget _buildPlayerView(Podcast podcast, Episode episode, double screenHeight) {
+  Widget _buildPlayerView(
+      Podcast podcast, Episode episode, double screenHeight) {
     return Column(
       key: const ValueKey("player_view"),
       children: [
         const Spacer(flex: 1),
-        // Premium Cover Art
+        // Cover Art
         Center(
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              // Spinning outer ring
-              Container(
-                width: screenHeight * 0.38,
-                height: screenHeight * 0.38,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: AppColors.saffron.withOpacity(0.1),
-                    width: 2,
-                  ),
-                ),
-              ).animate(onPlay: (controller) => controller.repeat())
-               .rotate(duration: 30.seconds),
-               
-              Hero(
-                tag: 'podcast_image_${podcast.id}',
-                child: Container(
-                  width: screenHeight * 0.32,
-                  height: screenHeight * 0.32,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.deepMaroon.withOpacity(0.3),
-                        blurRadius: 40,
-                        offset: const Offset(0, 20),
-                        spreadRadius: -10,
-                      ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(40),
-                    child: CachedNetworkImage(
-                      imageUrl: podcast.imageUrl,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ).animate().scale(duration: 600.ms, curve: Curves.easeOut).fadeIn(),
-            ],
-          ),
-        ),
-        
-        const Spacer(flex: 2),
-        
-        // Metadata
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          episode.title,
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textPrimary,
-                            height: 1.2,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        Text(
-                          podcast.author,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: AppColors.deepMaroon.withOpacity(0.7),
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.favorite_border, color: AppColors.deepMaroon),
+          child: Hero(
+            tag: 'podcast_image_${podcast.id}',
+            child: Container(
+              width: screenHeight * 0.32,
+              height: screenHeight * 0.32,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 30,
+                    offset: const Offset(0, 15),
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(24),
+                child: CachedNetworkImage(
+                  imageUrl: podcast.imageUrl,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+        ).animate().scale(duration: 600.ms, curve: Curves.easeOut).fadeIn(),
+
+        const Spacer(flex: 1),
+
+        // Metadata
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
               Text(
-                episode.description,
+                episode.title,
+                textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.deepMaroon,
+                  height: 1.2,
+                  fontFamily: 'Philosopher',
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                podcast.author.toUpperCase(),
                 style: TextStyle(
-                  fontSize: 14,
-                  color: AppColors.textSecondary.withOpacity(0.8),
-                  height: 1.4,
+                  fontSize: 12,
+                  letterSpacing: 2,
+                  color: AppColors.deepMaroon.withOpacity(0.6),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 15),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: AppColors.saffron.withOpacity(0.15),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: AppColors.saffron.withOpacity(0.3)),
+                ),
+                child: Text(
+                  podcast.category,
+                  style: const TextStyle(
+                      color: AppColors.saffron,
+                      fontSize: 9,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -291,109 +274,255 @@ class _PlayerScreenState extends State<PlayerScreen> {
   Widget _buildLyricsView(Episode episode) {
     return Container(
       key: const ValueKey("lyrics_view"),
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Container(
+            width: 40,
+            height: 4,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.3),
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+          const SizedBox(height: 30),
           const Text(
-            "Lyrics",
+            "LYRICS",
             style: TextStyle(
-              fontSize: 28,
+              fontSize: 12,
+              letterSpacing: 4,
               fontWeight: FontWeight.bold,
               color: AppColors.deepMaroon,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           Expanded(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Text(
                 episode.lyrics ?? "Lyrics not available for this episode.",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.textPrimary.withOpacity(0.9),
-                  height: 1.6,
+                  color: AppColors.deepMaroon.withOpacity(0.9),
+                  height: 1.8,
                 ),
               ),
             ),
           ),
         ],
       ),
+    ).animate().slideY(begin: 0.1, end: 0).fadeIn();
+  }
+
+  Widget _buildControlsSection(
+      Podcast podcast, Episode episode, AudioPlayerProvider audioProvider) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      decoration: BoxDecoration(
+        color: AppColors.deepMaroon.withOpacity(0.05),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(40)),
+      ),
+      child: SafeArea(
+        top: false,
+        child: Column(
+          children: [
+            AudioPlayerWidget(audioUrl: episode.audioUrl),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildIconButton(
+                  audioProvider.isFavorite(episode.id)
+                      ? Icons.favorite_rounded
+                      : Icons.favorite_border_rounded,
+                  () => audioProvider.toggleFavorite(podcast, episode),
+                  color: audioProvider.isFavorite(episode.id)
+                      ? Colors.redAccent
+                      : null,
+                ),
+                _buildIconButton(Icons.share_outlined, () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Sharing episode...")),
+                  );
+                }),
+                GestureDetector(
+                  onTap: () => setState(() => showLyrics = !showLyrics),
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: showLyrics
+                          ? AppColors.deepMaroon
+                          : AppColors.deepMaroon.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.lyrics_rounded,
+                            size: 18,
+                            color: showLyrics
+                                ? Colors.white
+                                : AppColors.deepMaroon),
+                        const SizedBox(width: 8),
+                        Text(
+                          "LYRICS",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: showLyrics
+                                ? Colors.white
+                                : AppColors.deepMaroon,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                _buildIconButton(
+                  audioProvider.isDownloaded(episode.id)
+                      ? Icons.file_download_done_rounded
+                      : Icons.file_download_outlined,
+                  () => audioProvider.toggleDownload(episode),
+                  color: audioProvider.isDownloaded(episode.id)
+                      ? Colors.green
+                      : null,
+                ),
+                _buildIconButton(Icons.more_horiz_rounded, () {
+                  _showMoreOptions(context, episode);
+                }),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 
-  Widget _buildControlsSection(Episode episode, AudioPlayerProvider audioProvider) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          AudioPlayerWidget(audioUrl: episode.audioUrl),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.share_outlined),
-                color: AppColors.textSecondary,
+  void _showMoreOptions(BuildContext context, Episode episode) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: AppColors.background,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: AppColors.deepMaroon.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(2),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.timer_outlined),
-                color: AppColors.textSecondary,
-              ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    showLyrics = !showLyrics;
-                  });
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: showLyrics ? AppColors.deepMaroon : Colors.transparent,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: AppColors.deepMaroon.withOpacity(0.2),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.lyrics_outlined, 
-                        size: 18, 
-                        color: showLyrics ? Colors.white : AppColors.deepMaroon
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        "Lyrics",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: showLyrics ? Colors.white : AppColors.deepMaroon,
-                        ),
-                      ),
-                    ],
-                  ),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              episode.title,
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: AppColors.deepMaroon),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 24),
+            _buildOptionTile(Icons.timer_outlined, "Sleep Timer"),
+            _buildOptionTile(Icons.speed_rounded, "Playback Speed"),
+            _buildOptionTile(Icons.playlist_add_rounded, "Add to Playlist"),
+            _buildOptionTile(Icons.info_outline_rounded, "Episode Credits"),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildOptionTile(IconData icon, String title) {
+    return ListTile(
+      leading: Icon(icon, color: AppColors.deepMaroon),
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
+      onTap: () => Navigator.pop(context),
+    );
+  }
+
+  Widget _buildIconButton(IconData icon, VoidCallback onTap, {Color? color}) {
+    return IconButton(
+      onPressed: onTap,
+      icon: Icon(icon,
+          color: color ?? AppColors.deepMaroon.withOpacity(0.7), size: 24),
+    );
+  }
+
+  void _showSyncDialog(BuildContext context, RoomSyncProvider syncProvider) {
+    final TextEditingController controller = TextEditingController();
+    final auth = context.read<AuthProvider>();
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.background,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: const Text("Listen Together", style: TextStyle(color: AppColors.deepMaroon, fontWeight: FontWeight.bold)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text("Sync your playback with friends in real-time.", style: TextStyle(fontSize: 12)),
+            const SizedBox(height: 20),
+            if (syncProvider.isConnected) ...[
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(color: Colors.green.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
+                child: Row(
+                  children: [
+                    const Icon(Icons.check_circle, color: Colors.green, size: 16),
+                    const SizedBox(width: 8),
+                    Text("In Room: ${syncProvider.roomId}", style: const TextStyle(fontWeight: FontWeight.bold)),
+                  ],
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.playlist_play),
-                color: AppColors.textSecondary,
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  syncProvider.leaveRoom();
+                  Navigator.pop(context);
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent, foregroundColor: Colors.white),
+                child: const Text("Leave Room"),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.download_for_offline_outlined),
-                color: AppColors.textSecondary,
+            ] else ...[
+              TextField(
+                controller: controller,
+                decoration: InputDecoration(
+                  hintText: "Enter Room ID",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                  filled: true,
+                  fillColor: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 15),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (controller.text.isNotEmpty) {
+                      syncProvider.joinRoom(controller.text, auth.user?['_id'] ?? "anonymous");
+                      Navigator.pop(context);
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: AppColors.deepMaroon, foregroundColor: Colors.white),
+                  child: const Text("Join / Create Room"),
+                ),
               ),
             ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
-
